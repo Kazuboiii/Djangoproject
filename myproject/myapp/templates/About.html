@@ -1,74 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About Us</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f6f7fb;
-            color: #333;
-            margin: 0;
-        }
+{% extends 'base.html' %}
 
-        .navbar {
-            background: #1e293b;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+{% block title %}About | E-Shop{% endblock %}
 
-        .navbar a {
-            color: #dfe7ff;
-            text-decoration: none;
-            margin-left: 20px;
-        }
+{% block content %}
 
-        .navbar a:hover {
-            text-decoration: underline;
-        }
+<!-- Hero Section -->
+<div style="text-align:center; padding:50px 20px; background:#f5f5f5; border-radius:12px; margin-bottom:40px;">
+    <h1 style="font-size:40px; color:#2563eb;">About E-Shop</h1>
+    <p style="font-size:18px; max-width:700px; margin:auto; margin-top:15px;">
+        E-Shop is a dummy e-commerce website built with Django.
+        It is created for learning purposes and demonstrates
+        real-world website structure.
+    </p>
+</div>
 
-        .container {
-            max-width: 900px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        h1 {
-            margin-bottom: 20px;
-            color: #1f2937;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.7;
-            color: #4b5563;
-        }
-    </style>
-</head>
-<body>
-
-    <nav class="navbar">
-        <strong style="color:white;">My Django Site</strong>
-        <div>
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'about' %}">About</a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h1>About Us</h1>
-        <p>
-            This website is built using Django.  
-            I'm learning web development step by step and building clean,
-            simple, and functional web pages.
-        </p>
-        <p>
-            This About page is connected properly using Django URL routing,
-            not hardcoded links.
-        </p>
+<!-- Features Section -->
+<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:25px;">
+    <div class="feature-card">
+        <h3>Product Listings</h3>
+        <p>Showcase products with images, descriptions, and prices in a modern grid layout.</p>
     </div>
+    <div class="feature-card">
+        <h3>User Authentication</h3>
+        <p>Allow users to register, log in, and manage their account securely.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Shopping Cart</h3>
+        <p>Enable users to add products to their cart and view them before checkout.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Checkout System</h3>
+        <p>Simulate a complete checkout process with order summary and payment options.</p>
+    </div>
+</div>
 
-</body>
-</html>
+<style>
+/* Feature cards */
+.feature-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    border: 1px solid #2563eb;
+}
+
+/* Feature card titles */
+.feature-card h3 {
+    color: #2563eb;
+    margin-bottom: 10px;
+}
+
+/* Feature card text */
+.feature-card p {
+    font-size: 15px;
+    color: #333;
+}
+</style>
+
+{% endblock %}

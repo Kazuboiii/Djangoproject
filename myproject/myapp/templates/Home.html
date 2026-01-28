@@ -1,128 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Django Home</title>
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+{% extends 'base.html' %}
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f6f7fb;
-            color: #333;
-        }
+{% block title %}Home - E-Shop{% endblock %}
 
-        /* Navbar Styles */
-        .navbar {
-            background: #1e293b;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+{% block content %}
 
-        .navbar .logo {
-            font-size: 24px;
-            color: #fff;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+<h2 style="margin-bottom: 30px; text-align:center;">Our Products</h2>
 
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
+<div class="product-grid">
+    {% for product in products %}
+        <div class="product-card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% endif %}
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description|truncatechars:150 }}</p>
+            <p><strong>NRP.{{ product.price }}</strong></p>
+        </div>
+    {% empty %}
+        <p>No products available.</p>
+    {% endfor %}
+</div>
 
-        .navbar ul li a {
-            color: #dfe7ff;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: background 0.3s ease;
-        }
+<style>
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
 
-        .navbar ul li a:hover {
-            background: #334155;
-        }
+/* Product Card */
+.product-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
-        .hero {
-            padding: 80px 40px;
-            text-align: center;
-        }
+/* Highlight effect on hover */
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    border: 1px solid #2563eb; /* subtle blue highlight */
+}
 
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            color: #1f2937;
-        }
+/* Product Image */
+.product-card img {
+    width: 200px; /* bigger images */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
 
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #4b5563;
-        }
+/* Product Title */
+.product-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
 
-        .btn {
-            padding: 12px 30px;
-            background: #2563eb;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s ease;
-        }
+/* Product Price */
+.product-card p strong {
+    color: #2563eb;
+    font-size: 18px;
+}
+</style>
 
-        .btn:hover {
-            background: #1d4ed8;
-        }
-
-        /* Responsive Navbar */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px;
-            }
-
-            .navbar ul {
-                gap: 10px;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">My Django Site</div>
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Welcome to My Django Website</h1>
-        <p>This is a clean and simple home page with a modern navbar. You can customize it as you want.</p>
-        <button class="btn">Get Started</button>
-    </section>
-
-</body>
-</html>
- 
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact | E-Shop{% endblock %}
+
+{% block content %}
+<h1>Contact Us</h1>
+<br>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: green;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Name</label><br>
+    <input type="text" name="name" style="width:100%; padding:10px;"><br><br>
+
+    <label>Email</label><br>
+    <input type="email" name="email" style="width:100%; padding:10px;"><br><br>
+
+    <label>Message</label><br>
+    <textarea name="message" rows="5" style="width:100%; padding:10px;"></textarea><br><br>
+
+    <button style="padding:12px 25px; background:#2563eb; color:white; border:none; border-radius:6px;">
+        Send Message
+    </button>
+</form>
+{% endblock %}
