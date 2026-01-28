@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f7fb;
+            color: #333;
+            margin: 0;
+        }
+
+        .navbar {
+            background: #1e293b;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #dfe7ff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <strong style="color:white;">My Django Site</strong>
+        <div>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>About Us</h1>
+        <p>
+            This website is built using Django.  
+            I'm learning web development step by step and building clean,
+            simple, and functional web pages.
+        </p>
+        <p>
+            This About page is connected properly using Django URL routing,
+            not hardcoded links.
+        </p>
+    </div>
+
+</body>
+</html>
