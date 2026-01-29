@@ -32,9 +32,9 @@
 
                 <!-- QUANTITY -->
                 <div class="quantity">
-                    <a href="{% url 'decrease_quantity' item.id %}">−</a>
+                    <a href="#">−</a>
                     <span>{{ item.quantity }}</span>
-                    <a href="{% url 'increase_quantity' item.id %}">+</a>
+                    <a href="#">+</a>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
             <span>NRP. {{ cart_total }}</span>
         </div>
 
-        <a href="{% url 'checkout' %}" class="checkout-btn">
+        <a href="#" class="checkout-btn">
             Proceed to Checkout
         </a>
     </div>

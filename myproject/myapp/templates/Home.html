@@ -62,7 +62,7 @@
             <p>{{ product.description|truncatechars:120 }}</p>
             <strong>NRP. {{ product.price }}</strong>
 
-            <a href="#" class="add-cart-btn">Add to Cart</a>
+            <a href="{% url 'add_to_cart' product.id %}" class="add-cart-btn">Add to Cart</a>
         </div>
         {% empty %}
             <p>No products available.</p>
