@@ -4,67 +4,218 @@
 
 {% block content %}
 
-<h2 style="margin-bottom: 30px; text-align:center;">Our Products</h2>
+<!-- HERO SECTION -->
+<section class="hero">
+    <h1>Shop Smart. Live Better.</h1>
+    <p>Your one-stop destination for quality products at the best price.</p>
+    <a href="{% url 'shop' %}" class="hero-btn">Shop Now</a>
+</section>
 
-<div class="product-grid">
-    {% for product in products %}
+<!-- FEATURES -->
+<section class="features">
+    <div class="feature-card">
+        🚚
+        <h3>Fast Delivery</h3>
+        <p>Quick and reliable delivery across Nepal</p>
+    </div>
+    <div class="feature-card">
+        💳
+        <h3>Secure Payments</h3>
+        <p>100% safe and encrypted payments</p>
+    </div>
+    <div class="feature-card">
+        ⭐
+        <h3>Quality Products</h3>
+        <p>Hand-picked premium quality items</p>
+    </div>
+    <div class="feature-card">
+        🔄
+        <h3>Easy Returns</h3>
+        <p>Hassle-free return & refund policy</p>
+    </div>
+</section>
+
+<!-- CATEGORIES -->
+<section>
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="categories">
+        <a href="#" class="category-card">📱 Electronics</a>
+        <a href="#" class="category-card">👕 Fashion</a>
+        <a href="#" class="category-card">🏠 Home</a>
+        <a href="#" class="category-card">📚 Books</a>
+        <a href="#" class="category-card">🎮 Gaming</a>
+        <a href="#" class="category-card">🧴 Beauty</a>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section>
+    <h2 class="section-title">Latest Products</h2>
+
+    <div class="product-grid">
+        {% for product in products %}
         <div class="product-card">
             {% if product.image %}
                 <img src="{{ product.image.url }}" alt="{{ product.name }}">
             {% endif %}
             <h3>{{ product.name }}</h3>
-            <p>{{ product.description|truncatechars:150 }}</p>
-            <p><strong>NRP.{{ product.price }}</strong></p>
+            <p>{{ product.description|truncatechars:120 }}</p>
+            <strong>NRP. {{ product.price }}</strong>
+
+            <a href="#" class="add-cart-btn">Add to Cart</a>
         </div>
-    {% empty %}
-        <p>No products available.</p>
-    {% endfor %}
-</div>
+        {% empty %}
+            <p>No products available.</p>
+        {% endfor %}
+    </div>
+</section>
 
+<!-- STYLES -->
 <style>
-/* Product Grid */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-}
-
-/* Product Card */
-.product-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
+/* HERO */
+.hero {
+    background: linear-gradient(to right, #2563eb, #1e40af);
+    color: white;
+    padding: 80px 20px;
     text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    margin-bottom: 60px;
 }
 
-/* Highlight effect on hover */
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    border: 1px solid #2563eb; /* subtle blue highlight */
-}
-
-/* Product Image */
-.product-card img {
-    width: 200px; /* bigger images */
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
+.hero h1 {
+    font-size: 42px;
     margin-bottom: 15px;
 }
 
-/* Product Title */
-.product-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
+.hero p {
+    font-size: 18px;
+    margin-bottom: 25px;
 }
 
-/* Product Price */
-.product-card p strong {
+.hero-btn {
+    background: white;
     color: #2563eb;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.hero-btn:hover {
+    background: #dbeafe;
+}
+
+/* FEATURES */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 70px;
+}
+
+.feature-card {
+    background: #fff;
+    padding: 25px;
+    text-align: center;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* SECTIONS */
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* CATEGORIES */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin-bottom: 70px;
+}
+
+.category-card {
+    background: #fff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #2563eb;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.category-card:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-5px);
+}
+
+/* PRODUCTS */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.2);
+}
+
+.product-card img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.product-card strong {
+    display: block;
+    margin: 12px 0;
     font-size: 18px;
+    color: #2563eb;
+}
+
+.add-cart-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #2563eb;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.add-cart-btn:hover {
+    background: #1e40af;
 }
 </style>
 

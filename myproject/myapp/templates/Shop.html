@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block title %}Shop - E-Shop{% endblock %}
+
+{% block content %}
+
+<!-- SHOP HEADER -->
+<section class="shop-header">
+    <h1>Shop Products</h1>
+    <p>Browse all available products and filter by category</p>
+</section>
+
+<!-- CATEGORY FILTER -->
+<section class="filter-section">
+    <a href="{% url 'shop' %}" class="filter-btn {% if not selected_category %}active{% endif %}">
+        All
+    </a>
+
+    {% for category in categories %}
+        <a href="?category={{ category.slug }}"
+           class="filter-btn {% if selected_category == category.slug %}active{% endif %}">
+            {{ category.name }}
+        </a>
+    {% endfor %}
+</section>
+
+<!-- PRODUCTS -->
+<section>
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% endif %}
+
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description|truncatechars:110 }}</p>
+
+            <strong>NRP. {{ product.price }}</strong>
+
+            <div class="product-actions">
+                <a href="#" class="btn-outline">View</a>
+                <a href="#" class="btn-primary">Add to Cart</a>
+            </div>
+        </div>
+        {% empty %}
+            <p style="text-align:center;">No products found.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- STYLES -->
+<style>
+/* HEADER */
+.shop-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.shop-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.shop-header p {
+    color: #555;
+}
+
+/* FILTERS */
+.filter-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.filter-btn {
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+    transition: 0.3s;
+}
+
+.filter-btn:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.filter-btn.active {
+    background: #2563eb;
+    color: white;
+}
+
+/* PRODUCTS */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: #fff;
+    padding: 22px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: all 0.35s ease;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+}
+
+.product-card img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.product-card strong {
+    display: block;
+    margin: 12px 0;
+    font-size: 18px;
+    color: #2563eb;
+}
+
+/* ACTION BUTTONS */
+.product-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #1e40af;
+}
+
+.btn-outline {
+    padding: 10px 18px;
+    border-radius: 25px;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: #2563eb;
+    color: white;
+}
+</style>
+
+{% endblock %}
